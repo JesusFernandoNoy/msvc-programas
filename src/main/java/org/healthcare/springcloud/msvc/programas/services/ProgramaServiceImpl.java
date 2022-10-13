@@ -3,6 +3,7 @@ package org.healthcare.springcloud.msvc.programas.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.healthcare.springcloud.msvc.programas.models.Paciente;
 import org.healthcare.springcloud.msvc.programas.models.entity.Programa;
 import org.healthcare.springcloud.msvc.programas.repositories.ProgramaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +36,26 @@ public class ProgramaServiceImpl implements IProgramaService {
 	public void deleteById(Long id) {
 		repository.deleteById(id);		
 	}
+
+	/*
+	 * Crear funcionalidad para recuperar la información de programa 
+	 * con el listado de pacientes.
+	 */
+	@Override
+	public Optional<Programa> porIdConPacientes(Long id) {		
+        return Optional.empty();
+	}
+
+	/*
+	 * Crear funcionalidad para asignar paciente en lista programaPacientes
+	 */
+	@Override
+	public Optional<Paciente> asignarPaciente(Paciente paciente, Long programaId) {
+		
+        return Optional.empty();
+	}
+
+
+	
+
 }
