@@ -55,16 +55,10 @@ public class Programa {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	/*
-	 * 
-	 */
-
 
 	public List<ProgramaPaciente> getProgramaPacientes() {
 		return programaPacientes;
 	}
-
 
 	public void setProgramaPacientes(List<ProgramaPaciente> programaPacientes) {
 		this.programaPacientes = programaPacientes;

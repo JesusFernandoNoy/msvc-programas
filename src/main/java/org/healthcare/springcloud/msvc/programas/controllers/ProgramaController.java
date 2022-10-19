@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.healthcare.springcloud.msvc.programas.models.Paciente;
 import org.healthcare.springcloud.msvc.programas.models.entity.Programa;
 import org.healthcare.springcloud.msvc.programas.services.IProgramaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,16 @@ public class ProgramaController {
     public ResponseEntity<List<Programa>> listar(){
         return ResponseEntity.ok(service.findAll());
     }
+	
+    /*
+     * Pendiente modificar metodo detalle para devolver el programa con 
+     * pacientes asociados 
+     */
 
     @GetMapping("/{id}")
     public ResponseEntity<?> detalle(@PathVariable Long id){
         Optional<Programa> o = service.findById(id);
-        //Optional<Programa> o = service.porIdConUsuarios(id);
-
+        
         if(o.isPresent()){
             return ResponseEntity.ok(o.get());
         }
@@ -51,7 +56,8 @@ public class ProgramaController {
 
         Programa programaDB = service.save(programa);
         return ResponseEntity.status(HttpStatus.CREATED).body(programaDB);
-    }
+    }    
+
 
     @PutMapping("/{id}")
     public ResponseEntity<?> editar(@Valid @RequestBody Programa programa, BindingResult result, @PathVariable Long id){
@@ -79,6 +85,16 @@ public class ProgramaController {
         return ResponseEntity.notFound().build();
     }
     
+    
+    /*
+     * Pendiente desarrollar funcionalidad
+     */
+    @PutMapping("/asignar-paciente/{programaId}")
+    public ResponseEntity<?> asignarPaciente(@RequestBody Paciente paciente, @PathVariable Long programaId){
+        
+        return ResponseEntity.notFound().build();
+    }  
+    
     private static ResponseEntity<Map<String, String>> validar(BindingResult result) {
         Map<String,String> errores = new HashMap<>();
         result.getFieldErrors().forEach(err -> {
@@ -86,5 +102,7 @@ public class ProgramaController {
         });
         return ResponseEntity.badRequest().body(errores);
     }
+    
+    
 	
 }
